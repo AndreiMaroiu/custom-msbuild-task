@@ -7,4 +7,8 @@
 
   <Import Project="$(CustomTasksDirectory)\CustomTasks.props" Condition="'$(CustomTasksEnabled)' != 'False'"/>
 
+	<Target Name="Logging">
+		<Warning Text="Custom Task Directory: $(CustomTasksDirectory)"></Warning>
+	</Target>
+	
 </Project>

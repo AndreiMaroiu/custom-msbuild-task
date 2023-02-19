@@ -11,11 +11,7 @@
             ContinueOnError="$(CustomTaskContinueOnError)"
             StringParameter="$(CustomTaskStringParameter)"
             FileItems="@(Compile)">
-      <Output TaskParameter="OutputParameter" PropertyName="ResultParameter"/>
-      <Output TaskParameter="OutputItems" ItemName="ResultItems"/>
     </CustomTask>
-<!--    <Warning Text="Parameter: $(ResultParameter)" />-->
-<!--    <Warning Text="Items: @(ResultItems)" />-->
   </Target>
 
 </Project>

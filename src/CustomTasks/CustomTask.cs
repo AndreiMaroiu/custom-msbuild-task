@@ -7,45 +7,14 @@ using Microsoft.Build.Utilities;
 
 namespace CustomTasks;
 
-public class CustomTask : ContextAwareTask
+public class CustomTask : Task
 {
     [Required] public string StringParameter { get; set; }
     public ITaskItem[] FileItems { get; set; }
 
-    [Output] public string OutputParameter { get; set; }
-    [Output] public ITaskItem[] OutputItems { get; set; }
-
-    protected override bool ExecuteInner()
+    public override bool Execute()
     {
-        string GetFile([CallerFilePath] string path = null) => path;
-
-        Log.LogWarning(
-            subcategory: "subcategory",
-            warningCode: "CT1337",
-            helpKeyword: "helpKeyword",
-            helpLink: "helpLink",
-            file: GetFile(),
-            lineNumber: 100,
-            columnNumber: 5,
-            endLineNumber: 0,
-            endColumnNumber: 0,
-            message: "message");
-
-        BuildEngine.LogWarningEvent(
-            new BuildWarningEventArgs(
-                subcategory: "subcategory",
-                code: "code",
-                file: GetFile(),
-                lineNumber: 100,
-                columnNumber: 10,
-                endLineNumber: 0, // ignored if 0
-                endColumnNumber: 0, // ignored if 0
-                message: Assembly.GetExecutingAssembly().Location,
-                helpKeyword: "helpKeyword",
-                senderName: "senderName"));
-
-        OutputParameter = StringParameter;
-        OutputItems = new[] { new TaskItem($"{StringParameter}.cs") }.Concat(FileItems).ToArray();
+        System.IO.File.WriteAllText("C:\\Users\\Achi\\Desktop\\Read me.txt", "Hello world");
 
         return true;
     }
